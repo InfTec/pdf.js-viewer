@@ -832,7 +832,7 @@ document.webL10n = (function(window, document, undefined) {
       if (Object.keys(gL10nData).length > 0) {
         console.warn('#' + key + ' is undefined.');
       }
-      // === patch end === 
+      // === patch end ===
       if (!fallback) {
         return null;
       }
@@ -12059,7 +12059,11 @@ exports.localized = localized;
  var pdfjsLib;
  if (typeof __pdfjsdev_webpack__ === 'undefined') {
   if (typeof require === 'function') {
-   pdfjsLib = require('../build/pdf.js');
+    try {
+      pdfjsLib = require('../build/pdf.js');
+    } catch (e) {
+      pdfjsLib = window['pdfjs-dist/build/pdf'];
+    }
   } else {
    pdfjsLib = window['pdfjs-dist/build/pdf'];
   }
